@@ -1,0 +1,112 @@
+/* Подключение шрифта Winston с разными толщинами и стилями */
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-Black.ttf') format('truetype');
+    font-weight: 900; /* Black */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-BlackItalic.ttf') format('truetype');
+    font-weight: 900; /* Black */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-Bold.ttf') format('truetype');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-BoldItalic.ttf') format('truetype');
+    font-weight: 700; /* Bold */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-ExtraBold.ttf') format('truetype');
+    font-weight: 800; /* ExtraBold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800; /* ExtraBold */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-ExtraLight.ttf') format('truetype');
+    font-weight: 200; /* ExtraLight */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-ExtraLightItalic.ttf') format('truetype');
+    font-weight: 200; /* ExtraLight */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-Italic.ttf') format('truetype');
+    font-weight: 400; /* Regular */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-Light.ttf') format('truetype');
+    font-weight: 300; /* Light */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-LightItalic.ttf') format('truetype');
+    font-weight: 300; /* Light */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-Medium.ttf') format('truetype');
+    font-weight: 500; /* Medium */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-MediumItalic.ttf') format('truetype');
+    font-weight: 500; /* Medium */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-Regular.ttf') format('truetype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-SemiBold.ttf') format('truetype');
+    font-weight: 600; /* SemiBold */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Winston';
+    src: url('/static/fonts/Winston-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600; /* SemiBold */
+    font-style: italic;
+}

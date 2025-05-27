@@ -16,14 +16,52 @@ func NewServer() *Server {
 	}
 	engine := gin.Default()
 	if gin.Mode() == gin.ReleaseMode {
-		engine.LoadHTMLFiles("./frontend/templates/*.html")
-		engine.LoadHTMLFiles("./frontend/html/*.html")
+		engine.LoadHTMLFiles(
+			"frontend/templates/index.html",
+			"frontend/html/all.html",
+			"frontend/html/single.html",
+			"frontend/templates/footer.html",
+			"frontend/templates/header.html",
+		)
 	} else {
-		engine.LoadHTMLGlob("./frontend/templates/*.html")
-		engine.LoadHTMLGlob("./frontend/html/*.html")
+		engine.LoadHTMLGlob("frontend/templates/*.html")
 	}
-	engine.StaticFS("/frontend", gin.Dir("./frontend", true))
+	engine.Static("/static/images", "frontend/assets/images")
+	engine.Static("/static/fonts", "frontend/assets/fonts")
+	engine.Static("/static/css", "frontend/css")
+	engine.Static("/static/js", "frontend/js")
 	return &Server{
 		Router: engine,
 	}
+}
+
+func (s *Server) Get(path string, handler gin.HandlerFunc) {
+	s.Router.GET(path, handler)
+}
+
+func (s *Server) Run(addr string) {
+	s.Router.Run(addr)
+}
+
+func main() {
+	server := NewServer()
+	server.Get("/", func(c *gin.Context) {
+		c.HTML(200, "index.html", gin.H{
+			"title": "Gin",
+			"style": "/static/css/index.css",
+		})
+	})
+	server.Get("/all", func(c *gin.Context) {
+		c.HTML(200, "index.html", gin.H{
+			"title": "Gin",
+			"style": "/static/css/index.css",
+		})
+	})
+	server.Get("/reg", func(c *gin.Context) {
+		c.HTML(200, "index.html", gin.H{
+			"title": "Gin",
+			"style": "/static/css/index.css",
+		})
+	})
+	server.Run(":8080")
 }

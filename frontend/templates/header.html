@@ -1,5 +1,20 @@
-<html>
-  <head>
-    <title>My Website</title>
-  </head>
-  <body>
+{{define "header"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="{{.style}}">
+    <link rel="stylesheet" href="/static/css/header.css">
+</head>
+<body>
+    <div class="header-logo">
+            <a href="/">Neuron Nexus</a>
+        </div>
+    <div class="header">
+        <a href="/"><div class="header-button" id="topNews">Главное</div></a>
+        <a href="/reg"><div class="header-button" id="tatNews">Татарстан</div></a>
+        <a href="/all"><div class="header-button" id="allNews">Все новости</div></a>
+    </div>
+{{end}}
