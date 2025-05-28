@@ -134,7 +134,17 @@
 
 /*-----------*/
 
-
+.all-news-header{
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 5px;
+    box-sizing: border-box;
+    align-items: center;
+}
 
 /* Адаптивность для меньших экранов */
 @media (max-width: 1200px) {
