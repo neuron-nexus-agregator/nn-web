@@ -38,36 +38,86 @@ async function load(id) {
         const enclosure = data.enclosure;
         const sources = data.sources;
 
-        // Логика для обработки изображения и заглушки
+        // Создаем элементы для заголовка и описания, но пока не добавляем их в DOM
+        const h1 = document.createElement('h1');
+        h1.textContent = title;
+
+        const pDateDescription = document.createElement('p');
+        pDateDescription.textContent = `${date} - ${description}`;
+
         if (enclosure) {
-            // Если изображение существует, сначала показываем заглушку
+            // Если изображение существует, создаем контейнер для изображения и текста
+            const imageContainer = document.createElement('div');
+            imageContainer.style.position = 'relative';
+            imageContainer.style.width = '100vw'; // Занимает всю ширину видимой области
+            imageContainer.style.marginLeft = 'calc(-50vw + 50%)'; // Центрирует контейнер по ширине экрана
+            imageContainer.style.minHeight = '250px'; // Зарезервированная высота
+            imageContainer.style.overflow = 'hidden';
+            imageContainer.style.marginBottom = '20px'; // Добавляем отступ снизу
+
+            // Создаем изображение-заглушку
             const placeholderImg = document.createElement('img');
             placeholderImg.src = '/static/images/post.jpg';
             placeholderImg.alt = 'Загрузка изображения...';
             placeholderImg.id = 'news-placeholder-image';
-
-            // Применяем стили для заглушки, чтобы предотвратить скачки макета
-            placeholderImg.style.minHeight = '250px'; // Можно настроить это значение
-            placeholderImg.style.backgroundColor = '#f0f0f0'; // Фон для заглушки
-            placeholderImg.style.display = 'block';
-            placeholderImg.style.objectFit = 'cover';
             placeholderImg.style.width = '100%';
-            placeholderImg.style.borderRadius = '15px';
+            placeholderImg.style.height = '100%'; // Изображение заполняет контейнер
+            placeholderImg.style.objectFit = 'cover';
+            placeholderImg.style.display = 'block';
+            placeholderImg.style.backgroundColor = '#f0f0f0'; // Фон для заглушки
+            placeholderImg.style.borderRadius = '5%'; // Возвращаем скругление краев в 5%
 
-            body.appendChild(placeholderImg); // Добавляем заглушку сразу после того, как стало известно, что есть изображение
+            imageContainer.appendChild(placeholderImg);
 
-            const minDisplayTime = 500; // Минимальное время отображения заглушки (500 миллисекунд)
+            // Создаем градиентную накладку
+            const gradientOverlay = document.createElement('div');
+            gradientOverlay.style.position = 'absolute';
+            gradientOverlay.style.bottom = '0';
+            gradientOverlay.style.left = '0';
+            gradientOverlay.style.width = '100%';
+            gradientOverlay.style.height = '50%'; // Градиент начинается с середины изображения
+            // Изменена непрозрачность белого цвета: 100% внизу (0%) и 90% на 70% высоты градиента для более сильного эффекта
+            gradientOverlay.style.background = 'linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 70%, rgba(255, 255, 255, 0) 100%)';
+            gradientOverlay.style.pointerEvents = 'none'; // Позволяет кликам проходить сквозь градиент
+            imageContainer.appendChild(gradientOverlay);
+
+            // Создаем контейнер для текста, накладываемого на изображение
+            const textOverlay = document.createElement('div');
+            textOverlay.style.position = 'absolute';
+            textOverlay.style.bottom = '15%'; // Подняли текст выше
+            textOverlay.style.left = '0';
+            textOverlay.style.width = '100%';
+            textOverlay.style.padding = '20px';
+            textOverlay.style.boxSizing = 'border-box';
+            textOverlay.style.color = 'black'; // Цвет текста
+            textOverlay.style.zIndex = '1'; // Убедимся, что текст находится над градиентом
+            // Возвращаем тень к предыдущему значению
+            textOverlay.style.textShadow = '0px 0px 5px rgba(255,255,255,0.7)'; 
+
+            h1.style.margin = '0'; // Убираем стандартные отступы
+            h1.style.color = 'black'; // Убедимся, что цвет текста черный
+            textOverlay.appendChild(h1);
+
+            pDateDescription.style.margin = '0'; // Убираем стандартные отступы
+            pDateDescription.style.marginTop = '5px'; // Небольшой отступ от заголовка
+            pDateDescription.style.color = 'black'; // Убедимся, что цвет текста черный
+            textOverlay.appendChild(pDateDescription);
+
+            imageContainer.appendChild(textOverlay);
+            body.appendChild(imageContainer); // Добавляем весь контейнер в body
+
+            const minDisplayTime = 500; // Минимальное время отображения заглушки
             const startTime = Date.now();
 
             const enc = document.createElement('img');
             enc.src = enclosure;
             enc.alt = title;
             // Применяем те же стили для фактического изображения
-            enc.style.minHeight = '250px';
-            enc.style.display = 'block';
-            enc.style.objectFit = 'cover';
             enc.style.width = '100%';
-            enc.style.borderRadius = '15px';
+            enc.style.height = '100%';
+            enc.style.objectFit = 'cover';
+            enc.style.display = 'block';
+            enc.style.borderRadius = '5%'; // Возвращаем скругление краев в 5%
 
             // Создаем промис, который разрешится, когда изображение загрузится или произойдет ошибка
             const imageLoadPromise = new Promise((resolve) => {
@@ -104,13 +154,10 @@ async function load(id) {
             ]);
 
             // Теперь заменяем заглушку фактическим изображением, если оно успешно загрузилось
-            if (enc.complete && enc.naturalHeight !== 0) { // Проверяем, успешно ли загрузилось фактическое изображение
+            if (enc.complete && enc.naturalHeight !== 0) {
                 const currentPlaceholder = document.getElementById('news-placeholder-image');
                 if (currentPlaceholder) {
                     currentPlaceholder.replaceWith(enc); // Заменяем заглушку фактическим изображением
-                } else {
-                    // Если заглушка была каким-то образом удалена, просто добавляем изображение в начало
-                    body.prepend(enc);
                 }
             } else {
                 // Если изображение не загрузилось, убедимся, что заглушка удалена
@@ -121,35 +168,15 @@ async function load(id) {
             }
 
         } else {
-            // Если enclosure отсутствует, заглушка не добавляется и никаких действий с изображениями не происходит.
-            // Убедимся, что любая случайная заглушка от предыдущих попыток удалена (хотя с этой логикой ее быть не должно)
-            const currentPlaceholder = document.getElementById('news-placeholder-image');
-            if (currentPlaceholder) {
-                currentPlaceholder.remove();
-            }
+            // Если enclosure отсутствует, добавляем заголовок и описание как обычный текст
+            body.appendChild(h1);
+            body.appendChild(pDateDescription);
         }
 
-        // Остальная часть добавления контента остается прежней
-        const h1 = document.createElement('h1');
-        h1.textContent = title;
-        body.appendChild(h1);
-
-        const hr = document.createElement('hr');
-        body.appendChild(hr);
-
-        const p = document.createElement('p');
-        p.textContent = `${date} - ${description}`;
-        body.appendChild(p);
-
-        const hr2 = document.createElement('hr');
-        body.appendChild(hr2);
-
+        // --- Контент, который загружается независимо от наличия изображения ---
         const text = document.createElement('p');
         text.innerHTML = fullText;
         body.appendChild(text);
-
-        const hr3 = document.createElement('hr');
-        body.appendChild(hr3);
 
         const h2 = document.createElement('h2');
         h2.textContent = 'Источники:';
