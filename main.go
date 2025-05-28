@@ -47,20 +47,30 @@ func main() {
 	server := NewServer()
 	server.Get("/", func(c *gin.Context) {
 		c.HTML(200, "index.html", gin.H{
-			"title": "Gin",
-			"style": "/static/css/index.css",
+			"title":  "Gin",
+			"style":  "/static/css/index.css",
+			"script": "/static/js/index.js",
 		})
 	})
 	server.Get("/all", func(c *gin.Context) {
-		c.HTML(200, "index.html", gin.H{
-			"title": "Gin",
-			"style": "/static/css/index.css",
+		c.HTML(200, "all.html", gin.H{
+			"title":  "Gin",
+			"style":  "/static/css/all.css",
+			"script": "/static/js/all.js",
 		})
 	})
 	server.Get("/reg", func(c *gin.Context) {
 		c.HTML(200, "index.html", gin.H{
-			"title": "Gin",
-			"style": "/static/css/index.css",
+			"title":  "Gin",
+			"style":  "/static/css/index.css",
+			"script": "/static/js/index.js",
+		})
+	})
+	server.Get("/news/:id", func(c *gin.Context) {
+		c.HTML(200, "single.html", gin.H{
+			"title":  "Gin",
+			"style":  "/static/css/single.css",
+			"script": "/static/js/single.js",
 		})
 	})
 	server.Run(":8080")

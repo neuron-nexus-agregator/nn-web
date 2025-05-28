@@ -1,0 +1,68 @@
+.container {
+    display: grid;
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-right: 50px;
+    box-sizing: border-box;
+    grid-template-columns: 8fr 2fr;
+    width: 100%;
+    min-height: 100vh; /* Минимальная высота — весь экран */
+}
+
+.news {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Элементы будут располагаться вертикально */
+    gap: 5px;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.right {
+    width: 100%;
+    height: 100vh; /* Высота равна высоте экрана */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky; /* Прилипание к верху */
+    top: 0; /* Фиксация в верхней части экрана */
+}
+
+.news-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    /* Убираем фиксированную высоту, чтобы она зависела от содержимого */
+    background-color: #f0f0f0; /* Для визуального различия */
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.news-item-rt{
+   background-color: rgb(255, 133, 133);
+}
+
+
+.news-item:hover{
+    background-color: rgba(187, 187, 187, 0.766);
+}
+
+.news-item-rt:hover{
+   background-color: rgb(188, 0, 0);
+   color: white;
+}
+
+.news-item p{
+    width: 100px;
+    font-size: 14px;
+    margin: 0;
+}
+
+.news-item h2{
+    font-size: 14px;
+    margin: 0;
+    margin-left: 10px;
+    font-weight: 500;
+}

@@ -1,4 +1,162 @@
-.container {
+.container{
+    display: flex;
+    flex-direction: row;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    gap: 30px;
+    align-items: flex-start
+}
+
+.container-top {
+    flex: 1;
+    max-width: 70%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    width: 100%;
+}
+
+.news-item {
     display: flex;
     flex-direction: column;
+    border: 1px solid #cfcfcf;
+    height: 100%;
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease; /* Плавное появление тени */
+}
+
+.news-item *{
+    box-sizing: border-box
+}
+
+.news-item:hover {
+    background-color: #f2f2f2;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень при наведении */
+}
+
+.image-div {
+    width: 100%;
+    height: 200px; /* Фиксированная высота для резервирования места */
+    background-color: #f0f0f0; /* Серый фон как запасной вариант */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+    border-radius: 3px 3px 0 0;
+}
+
+.news-item .image-div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Изображение заполняет контейнер без искажений */
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: grayscale(100%);
+    transition: transform 0.3s ease, filter 0.3s ease; /* Плавный переход для transform и filter */
+}
+
+.news-item:hover .image-div img {
+    filter: grayscale(0%);
+    transform: scale(1.1); /* Увеличение изображения на 10% при наведении */
+}
+
+.news-item .title-div, .news-item .description-div {
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.news-item .title-div h2 {
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.news-item .title-div p {
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.news-item .description-div p {
+    font-size: 14px;
+    margin-top: 0;
+}
+
+/*-----------*/
+.container-all{
+    flex: 1;
+    max-width: 30%;
+    box-sizing: border-box;
+    background-color: rgb(85, 85, 85);
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.line-news-div{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-self: start;
+    border: 1px solid rgba(0, 0, 0, 0.163);
+    padding-left: 5px;
+    padding-right: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 2px;
+}
+
+.line-news-div-rt{
+   background-color: rgba(255, 0, 0, 0.503);
+}
+
+
+.line-news-div:hover{
+    background-color: rgba(187, 187, 187, 0.163);
+    border: 1px solid transparent;
+}
+
+.line-news-div-rt:hover{
+   background-color: rgba(255, 0, 0, 0.634);
+}
+
+.line-news-div .date-div p{
+    font-size: 12px;
+}
+
+
+.line-news-div .title-div p{
+    font-size: 14px;
+}
+
+/*-----------*/
+
+
+
+/* Адаптивность для меньших экранов */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: repeat(3, 1fr);
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }

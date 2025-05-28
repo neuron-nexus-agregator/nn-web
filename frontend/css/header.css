@@ -84,3 +84,12 @@ html, body {
     text-decoration: none;
 }
 
+.news-link{
+    color: inherit; /* Наследование цвета текста от родителя */
+    text-decoration: none; /* Убираем подчеркивание */
+    background-color: transparent; /* Убираем фоновый цвет */
+    display: block; /* Убеждаемся, что a занимает весь размер родителя (div) */
+    width: 100%;
+    height: 100%;
+}
+
