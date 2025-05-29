@@ -34,7 +34,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 async function updateNews(json) {
     const n = 3
-    for (let i = 0; i < json.items.length - json.items.length % n; i++) {
+    if (json === null || json.items === null) {
+        return
+    }
+    for (let i = 0; i < json.items.length; i++) {
         const newItem = document.createElement('div');
         newItem.className = 'news-item';
 

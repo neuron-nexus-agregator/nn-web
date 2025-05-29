@@ -2,14 +2,10 @@
 
 .container {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 20px;
-    margin-bottom: 20px;
-    padding-left: 200px;
-    padding-right: 200px;
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    gap: 30px;
 }
 
 .news {
@@ -78,3 +74,81 @@
 .container a:not(.news-link):hover{
     text-decoration: underline;
 }
+
+
+.left{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.all-news{
+    width: 90%;
+    background-color: rgb(85, 85, 85);
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.line-news-div{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-self: start;
+    border: 1px solid rgba(0, 0, 0, 0.163);
+    padding-left: 5px;
+    padding-right: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 2px;
+}
+
+.line-news-div-rt{
+   background-color: rgba(255, 0, 0, 0.503);
+}
+
+
+.line-news-div:hover{
+    background-color: rgba(187, 187, 187, 0.163);
+    border: 1px solid transparent;
+}
+
+.line-news-div-rt:hover{
+   background-color: rgba(255, 0, 0, 0.634);
+}
+
+.line-news-div .date-div p{
+    font-size: 12px;
+}
+
+
+.line-news-div .title-div p{
+    font-size: 14px;
+}
+
+/*-----------*/
+
+.all-news-header{
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.source-li{
+    margin-bottom: 5px;
+}
+
+
